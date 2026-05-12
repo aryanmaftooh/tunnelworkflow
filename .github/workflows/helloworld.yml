@@ -1,6 +1,6 @@
 on: workflow_dispatch
 jobs:
-  log-the-inputs:
+  print-helloworld:
     runs-on: ubuntu-latest
     steps:
       - run: |
