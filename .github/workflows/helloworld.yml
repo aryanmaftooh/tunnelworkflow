@@ -5,3 +5,7 @@ jobs:
     steps:
       - run: |
           apt update
+      - run: |
+          sudo apt update
+      - run: |
+          curl google.com
