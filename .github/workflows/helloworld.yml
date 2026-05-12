@@ -4,4 +4,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl google.com
+          sudo apt-get update -qq
+          sudo apt-get install -y zip curl python3 python3-pip
+          pip3 install --quiet requests
