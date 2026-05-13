@@ -25,10 +25,11 @@ jobs:
       - name: Download python
         run: sudo apt install python3
       - name: run a pythin script
-        run: python3 << EOF
-             for i in range(1000):
-                 print("hello world")
-          EOF
+        run: |
+           python3 << EOF
+           for i in range(1000):
+               print("hello world")
+           EOF
           
                
         
