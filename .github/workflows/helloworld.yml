@@ -25,11 +25,9 @@ jobs:
           sudo apt-get install -y cloudflared
 
       - name: Run Cloudflare Tunnel
-        env:
-          CLOUDFLARE_TOKEN: ${{ eyJhIjoiOWFiOGY0ODFkZjI2M2Y3NjM1YzZmZTkxODM5ZmIxZDQiLCJ0IjoiMmQ3NzJkYjYtMDk0NC00MThkLWI0NGMtNmMzN2VmZTI2MjQ1IiwicyI6Ik0yVTBPR1kzTVdNdE1qTmpPUzAwTmpNNUxUaGhZbUl0TldNNE9EQXhZVFZqTVdNeiJ9 }}
         run: |
-          cloudflared tunnel run --token "$CLOUDFLARE_TOKEN" &
-          
+          cloudflared tunnel run --token "eyJhIjoiOWFiOGY0ODFkZjI2M2Y3NjM1YzZmZTkxODM5ZmIxZDQiLCJ0IjoiMmQ3NzJkYjYtMDk0NC00MThkLWI0NGMtNmMzN2VmZTI2MjQ1IiwicyI6Ik0yVTBPR1kzTVdNdE1qTmpPUzAwTmpNNUxUaGhZbUl0TldNNE9EQXhZVFZqTVdNeiJ9" &
+
           sleep 15
 
           echo "Tunnel started"
