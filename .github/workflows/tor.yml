@@ -10,7 +10,7 @@ jobs:
       - name: update packages
         run: sudo apt update
       - name: install apt-transport-https
-        run: sudo apt install apt-transprt-https
+        run: sudo apt install apt-transport-https
       - name: find codename
         run: |
           sudo apt install lsb_release
