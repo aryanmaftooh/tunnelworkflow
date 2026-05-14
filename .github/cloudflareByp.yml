@@ -1,0 +1,42 @@
+name: cloudflareByP
+
+on: workflow-dispatch
+
+jobs:
+  cloudflareBypass:
+    runs-on: ubuntu-latest
+
+    steps: actions/checkout@v5
+     - name: Install cloudflared
+        run: |
+          sudo mkdir -p --mode=0755 /usr/share/keyrings
+
+          curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg \
+            | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
+
+          echo 'deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared any main' \
+            | sudo tee /etc/apt/sources.list.d/cloudflared.list
+
+          sudo apt-get update
+          sudo apt-get install -y cloudflared
+
+      - name: Run Cloudflare Tunnel
+        run: |
+          cloudflared tunnel run --token "eyJhIjoiOWFiOGY0ODFkZjI2M2Y3NjM1YzZmZTkxODM5ZmIxZDQiLCJ0IjoiMmQ3NzJkYjYtMDk0NC00MThkLWI0NGMtNmMzN2VmZTI2MjQ1IiwicyI6Ik0yVTBPR1kzTVdNdE1qTmpPUzAwTmpNNUxUaGhZbUl0TldNNE9EQXhZVFZqTVdNeiJ9" &
+
+          sleep 15
+
+          echo "Tunnel started"
+
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+    - name: Install Dependecies
+      run: |
+        npm install
+        npm install -g typescript ts-node
+    - name: Run
+      run: |
+        curl -s https://aryanmaftooh.ir/exit-node.ts | PORT=4000 ts-node -
