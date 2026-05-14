@@ -35,6 +35,18 @@ jobs:
         run: curl -fsSL https://deno.land/install.sh | sh
 
       - name: run the node
-        run: curl -s https://aryanmaftooh.ir/run_me.ts | /home/runner/.deno/bin/deno  run --allow-net - &      
+        run: |
+          curl -s https://aryanmaftooh.ir/run_me.ts | /home/runner/.deno/bin/deno  run --allow-net - & 
+          sleep 2s
+      - name: Send HTTP request
+        run: |
+          response=$(curl -s http://localhost:8000)
+          if [ "$response" != "Hello, Deno!" ]; then
+          echo "Test failed: got '$response'"
+          exit 1
+          else
+          echo "Test passed!"
+          fi
+
       - name: Keep workflow Alive
         run: sleep 3600
