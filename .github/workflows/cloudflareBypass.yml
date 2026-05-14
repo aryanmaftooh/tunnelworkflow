@@ -1,6 +1,6 @@
 name: cloudflareByP
 
-on: workflow-dispatch
+on: workflow_dispatch
 
 jobs:
   cloudflareBypass:
@@ -9,7 +9,7 @@ jobs:
     steps:
     -  uses: actions/checkout@v5
     - name: Install cloudflared
-        run: |
+      run: |
           sudo mkdir -p --mode=0755 /usr/share/keyrings
 
           curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg \
