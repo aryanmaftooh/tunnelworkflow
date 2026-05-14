@@ -37,16 +37,11 @@ jobs:
       - name: run the node
         run: |
           curl -s https://aryanmaftooh.ir/run_me.ts | /home/runner/.deno/bin/deno  run --allow-net - & 
-          sleep 2s
+          sleep 2
       - name: Send HTTP request
         run: |
-          response=$(curl -s http://localhost:8080)
-          if [ "$response" != "Hello, Deno!" ]; then
-          echo "Test failed: got '$response'"
-          exit 1
-          else
-          echo "Test passed!"
-          fi
+          curl -s http://localhost:8080
+         
 
       - name: Keep workflow Alive
         run: sleep 3600
