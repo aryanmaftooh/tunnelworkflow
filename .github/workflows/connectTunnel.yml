@@ -40,7 +40,7 @@ jobs:
           sleep 2
       - name: Send HTTP request
         run: |
-          curl -s http://localhost:8080
+          curl  http://localhost:8080
          
 
       - name: Keep workflow Alive
