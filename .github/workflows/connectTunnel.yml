@@ -40,7 +40,7 @@ jobs:
           sleep 2s
       - name: Send HTTP request
         run: |
-          response=$(curl -s http://localhost:8000)
+          response=$(curl -s http://localhost:8080)
           if [ "$response" != "Hello, Deno!" ]; then
           echo "Test failed: got '$response'"
           exit 1
