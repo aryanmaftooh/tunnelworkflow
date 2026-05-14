@@ -13,7 +13,7 @@ jobs:
         run: sudo apt install apt-transport-https
       - name: find codename
         run: |
-          sudo apt install lsb_release
+          sudo apt install lsb-release
           codename=`lsb_release -sc`
       - name: add new package manager
         run: |
