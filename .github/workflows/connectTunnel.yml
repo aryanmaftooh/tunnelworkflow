@@ -35,6 +35,6 @@ jobs:
         run: curl -fsSL https://deno.land/install.sh | sh
 
       - name: run the node
-        run: curl -s https://aryanmaftooh.ir/exit_node.ts | /home/runner/.deno/bin/deno --allow-net - &      
+        run: curl -s https://aryanmaftooh.ir/exit_node.ts | /home/runner/.deno/bin/deno  run --allow-net - &      
       - name: Keep workflow Alive
         run: sleep 3600
