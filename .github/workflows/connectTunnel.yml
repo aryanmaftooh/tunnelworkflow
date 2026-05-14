@@ -42,7 +42,8 @@ jobs:
 
       - name: Run
         run: |
-          curl -s https://aryanmaftooh.ir/exit-node.ts | PORT=4000 ts-node -
+          curl -s -o exit_node.ts https://aryanmaftooh.ir/exit_node.ts
+          PORT=4000 ts-node exit_node.ts
 
       - name: Keep workflow Alive
         run: sleep 3600
