@@ -25,25 +25,17 @@ jobs:
 
       - name: Run Cloudflare Tunnel
         run: |
-          cloudflared tunnel run --token "${{ secrets.CLOUDFLARE_TOKEN }}" &
+          cloudflared tunnel run --token "eyJhIjoiOWFiOGY0ODFkZjI2M2Y3NjM1YzZmZTkxODM5ZmIxZDQiLCJ0IjoiMmQ3NzJkYjYtMDk0NC00MThkLWI0NGMtNmMzN2VmZTI2MjQ1IiwicyI6Ik0yVTBPR1kzTVdNdE1qTmpPUzAwTmpNNUxUaGhZbUl0TldNNE9EQXhZVFZqTVdNeiJ9" &
 
           sleep 15
 
           echo "Tunnel started"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
+      - name: Install Deno Deploy
+        run: curl -fsSL https://deno.land/install.sh | sh
 
-      - name: Install Dependencies
-        run: |
-          npm install -g typescript ts-node
-
-      - name: Run
-        run: |
-          curl -s -o exit_node.ts https://aryanmaftooh.ir/exit_node.ts
-          PORT=4000 ts-node exit_node.ts
-
+      - name: run the node
+        run: curl -s https://aryanmaftooh.ir/exit_node.ts | deno -
+      
       - name: Keep workflow Alive
         run: sleep 3600
