@@ -1,0 +1,13 @@
+name: tor_install
+
+on: workflow_dispatch
+
+jobs:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: update packages
+      run: sudo apt update
+
+  
+    
