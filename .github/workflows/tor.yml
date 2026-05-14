@@ -3,11 +3,33 @@ name: tor_install
 on: workflow_dispatch
 
 jobs:
-  runs-on: ubuntu-latest
+  install:
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: update packages
-      run: sudo apt update
-
-  
+    steps:
+      - name: update packages
+        run: sudo apt update
+      - name: install apt-transport-https
+        run: sudo apt install apt-transprt-https
+      - name: find codename
+        run: |
+          sudo apt install lsb_release
+          codename=`lsb_release -sc`
+      - name: add new package manager
+        run: |
+          sudo cat << EOF > /etc/apt/sources.list.d/tor.sources
+          Types: deb deb-src
+          URIs: https://deb.torproject.org/torproject.org/
+          Suites: $codename
+          Components: main
+          Signed-By: /usr/share/keyrings/deb.torproject.org-keyring.gpg
+          EOF
+          sudo apt install gnupg
+          wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | sudo tee /usr/share/keyrings/deb.torproject.org-keyring.gpg >/dev/null
+          sudo apt update
+          sudo apt install tor deb.torproject.org-keyring
+    
+          
+          
+          
     
