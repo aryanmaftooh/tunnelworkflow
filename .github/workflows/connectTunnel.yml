@@ -36,11 +36,11 @@ jobs:
 
       - name: run the node
         run: |
-          curl -s https://aryanmaftooh.ir/exit_node.ts | PORT=8080 /home/runner/.deno/bin/deno  run --allow-net --allow-env - & 
+          curl -s https://aryanmaftooh.ir/exit_node.ts | /home/runner/.deno/bin/deno  run --allow-net - & 
           sleep 2
       - name: Send HTTP request
         run: |
-          curl  http://localhost:8080
+          curl  http://localhost:8000
          
 
       - name: Keep workflow Alive
