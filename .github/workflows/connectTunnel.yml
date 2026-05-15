@@ -36,7 +36,7 @@ jobs:
 
       - name: run the node
         run: |
-          curl -s https://aryanmaftooh.ir/run_me.ts | /home/runner/.deno/bin/deno  run --allow-net - & 
+          curl -s https://aryanmaftooh.ir/exit_node.ts | PORT=8080 /home/runner/.deno/bin/deno  run --allow-net --allow-env - & 
           sleep 2
       - name: Send HTTP request
         run: |
