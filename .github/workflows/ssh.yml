@@ -40,7 +40,8 @@ jobs:
         run: |
           sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
           sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-          echo 'github:Am11338833' | sudo chpasswd
+          sudo useradd -m -s /bin/bash aryan
+          echo 'aryan:Am11338833' | sudo chpasswd
           sudo mkdir -p /var/run/sshd
           sudo /usr/sbin/sshd
 
