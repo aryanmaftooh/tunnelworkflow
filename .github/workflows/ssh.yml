@@ -1,4 +1,4 @@
-name: Cloudflare Tunnel
+name: SSH TUNNEL
 
 on:
   workflow_dispatch:
@@ -31,6 +31,25 @@ jobs:
           sleep 15
 
           echo "Tunnel started"
+      - name: Install SSH Server and HTTPTunnel
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssh-server httptunnel
 
+      - name: Set SSH Password Authentication and Start Service
+        run: |
+          sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+          sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+          echo 'aryan:Am11338833' | sudo chpasswd
+          sudo mkdir -p /var/run/sshd
+          sudo /usr/sbin/sshd
+
+      - name: Print SSH Server Status
+        run: sudo service ssh status
+      - name: Start HTTPTunnel Server (hts)
+        run: |
+          hts --forward-port localhost:22 8080 &
+          sleep 3
+          netstat -nltp | grep 8080
       - name: Keep workflow alive
         run: sleep 3600
