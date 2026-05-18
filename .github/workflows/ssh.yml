@@ -46,7 +46,7 @@ jobs:
           sudo /usr/sbin/sshd -D &
 
       - name: Print SSH Server Status
-        run: sudo service ssh status
+        run: ps aux | grep sshd
       - name: Start HTTPTunnel Server (hts)
         run: |
           hts --forward-port localhost:22 8080 &
